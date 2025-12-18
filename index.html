@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El-Kariem | Linktree</title>
+
+<!-- Font Cinemat -->
+<link href="https://fonts.cdnfonts.com/css/cinemat" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Swiper.js CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
+<style>
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Cinemat', sans-serif;}
+html,body{width:100%;height:100%;overflow:auto;position:relative;background:#000;}
+
+/* Background blur */
+.background {
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: url("https://i.ibb.co.com/7crHhy4/da7230b9573102e0e2a03db5840d247a.jpg") no-repeat center center/cover;
+    filter: blur(8px);
+    z-index:0;
+}
+
+/* Container utama */
+.container {
+    position:relative;
+    margin:50px auto;
+    width:90%;
+    max-width:400px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(15px);
+    border-radius:22px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+    z-index:2;
+}
+
+.logo-img {width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid #1f2937;margin-bottom:10px;}
+.logo-text {font-size:28px;font-weight:700;color:#1f2937;margin-bottom:8px;letter-spacing:1px;}
+.subtitle {font-size:14px;color:#555;margin-bottom:18px;}
+
+.link {
+    display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;
+    background:#1f2937;padding:14px 16px;border-radius:16px;margin-bottom:10px;font-size:15px;transition:.3s;
+    cursor:pointer;
+}
+.link i{font-size:18px;}
+.link:hover{background:#000;transform:scale(1.03);}
+
+/* QRIS hidden by default */
+.qris-container {
+    display:none;
+    margin:15px auto;
+    width:150px;
+    border:3px solid #fff;
+    border-radius:12px;
+    animation: fadeIn 0.8s ease forwards;
+}
+.qris-container img {width:100%;border-radius:12px;}
+
+/* Animasi fade-in */
+@keyframes fadeIn {
+    from {opacity:0; transform: scale(0.9);}
+    to {opacity:1; transform: scale(1);}
+}
+
+/* Slider Foto Santri */
+.swiper {width:100%;height:250px;margin-bottom:15px;}
+.swiper-slide img {
+    width:100%;height:100%;object-fit:cover;
+    border-radius:16px;
+    border:3px solid #fff; /* Bingkai foto Santri */
+}
+
+/* Video Hataman Santri */
+.video-container {
+    width:100%;
+    height:250px;
+    margin:15px auto;
+    border:3px solid #fff;
+    border-radius:12px;
+    overflow:hidden;
+    cursor:pointer;
+}
+.video-container video {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+footer{margin-top:10px;font-size:12px;color:#666;}
+
+/* Efek Salju */
+.snowflake {
+    position: fixed;
+    top: -10px;
+    color: #fff;
+    font-size: 1em;
+    user-select: none;
+    pointer-events: none;
+    z-index:3;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+    0% {transform: translateY(-10px);}
+    100% {transform: translateY(100vh);}
+}
+</style>
+</head>
+<body>
+
+<!-- Background Blur -->
+<div class="background"></div>
+
+<div class="container">
+    <!-- LOGO -->
+    <img src="https://i.ibb.co.com/84RWn3fq/images.jpg" class="logo-img" alt="Logo El-Kariem">
+    <div class="logo-text">El-Kariem</div>
+    <div class="subtitle">Nurul Karim</div>
+
+    <!-- Tombol/Tautan -->
+    <div class="link" onclick="window.open('https://chat.whatsapp.com/GrMwtxSWCIkCMbP2a0FIgT','_blank')">
+        <i class="fa-brands fa-whatsapp"></i> Grup Keluarga Besar Nurul Karim
+    </div>
+
+    <div class="link" onclick="window.open('https://whatsapp.com/channel/0029VbBjL37KLaHefHhMiK2F','_blank')">
+        <i class="fa-brands fa-whatsapp"></i> Saluran WhatsApp El-Kariem
+    </div>
+
+    <div class="link" onclick="window.open('https://www.instagram.com/media_nurulkarim?igsh=MW0yNzQ0aGozcm12bg==','_blank')">
+        <i class="fa-brands fa-instagram"></i> Instagram Nurul Karim
+    </div>
+
+    <div class="link" onclick="showQRIS()">
+        <i class="fa-solid fa-qrcode"></i> QRIS WARUNG NK
+    </div>
+
+    <!-- QRIS hidden by default -->
+    <div class="qris-container" id="qrisContainer">
+        <img src="https://i.ibb.co.com/hF0dKYXG/IMG-20251218-165224.jpg" alt="IMG-20251218-165224" border="0"></a>
+    </div>
+
+    <!-- Video Hataman Santri -->
+    <div class="video-container" onclick="toggleVideoSound()">
+        <video id="santriVideo" src="https://h.top4top.io/m_36393a0tk0.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+    <!-- PROFIL SANTRI SLIDER -->
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://i.ibb.co.com/mVfQwBMP/1766050084052.jpg" alt="Santri 1"></div>
+            <div class="swiper-slide"><img src="https://i.ibb.co.com/hxBWLG1B/1766050110707.jpg" alt="Santri 2"></div>
+            <div class="swiper-slide"><img src="https://i.ibb.co.com/wXJK8qr/1766050138770.jpg" alt="Santri 3"></div>
+            <div class="swiper-slide"><img src="https://i.ibb.co.com/bZfh7n8/1766050169459.jpg" alt="Santri 4"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <footer>© 2025 El-Kariem</footer>
+</div>
+
+<!-- Audio -->
+<audio id="background-music" src="https://html097-v37srjgyd-6344ygtrw0.edgeone.dev/ssstik.io_@zyyumusic98_1765431605549.mp3" autoplay loop></audio>
+
+<!-- Swiper.js -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<script>
+// Slider Foto
+const swiper = new Swiper('.swiper', {
+    loop:true,
+    pagination: {el:'.swiper-pagination', clickable:true},
+    spaceBetween:15
+});
+
+// Musik autoplay
+const music = document.getElementById('background-music');
+music.play().catch(()=>{console.log("Autoplay diblokir browser.")});
+
+// Efek Salju
+function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    snowflake.style.left = Math.random() * window.innerWidth + 'px';
+    snowflake.style.fontSize = (Math.random()*10+10) + 'px';
+    snowflake.style.opacity = Math.random();
+    snowflake.style.animationDuration = (Math.random()*5 + 5) + 's';
+    snowflake.innerHTML = '❄';
+    document.body.appendChild(snowflake);
+    setTimeout(()=>{ snowflake.remove(); }, 10000);
+}
+setInterval(createSnowflake, 200);
+
+// Tampilkan QRIS saat icon diklik
+function showQRIS() {
+    const qris = document.getElementById('qrisContainer');
+    if(qris.style.display === "none" || qris.style.display === "") {
+        qris.style.display = "block";
+        qris.style.animation = "fadeIn 0.8s ease forwards";
+    } else {
+        qris.style.display = "none";
+    }
+}
+
+// Toggle suara video saat diklik
+function toggleVideoSound() {
+    const vid = document.getElementById('santriVideo');
+    vid.muted = !vid.muted;
+    if(!vid.muted){ vid.play(); }
+}
+</script>
+
+</body>
+</html>
